@@ -2328,3 +2328,19 @@ class Custom_MHA_FP8(TransformerEngineBaseModule):
                 self.quantizers,
             )
         return out
+
+
+if __name__ == "__main__":
+    dsv3_use_case = ModelConfig(
+        1, 128, 128, 256, 4096, 4096, 0.0, "causal", "no_bias", head_dim_v=128
+    )
+    test_dot_product_attention(
+        torch.bfloat16,
+        [{'mla_0': dsv3_use_case}],
+        "mla_0",
+        True,
+        True,
+        None,
+        False,
+        False,
+    )
